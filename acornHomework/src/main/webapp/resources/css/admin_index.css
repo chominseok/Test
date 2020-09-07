@@ -1,0 +1,21 @@
+
+	ul{
+		list-style-type: none;
+	}
+	.page-display ul li{
+		float: left;
+		list-style-type: none;
+		margin-right: 10px;
+	}
+	.page-display ul li a{
+		text-decoration: none;
+		color: #000;
+	}
+	.page-display ul li.active a{
+		text-decoration: underline;
+		color: #f00;
+		font-weight: bold;
+	}
+	.page-display ul li.muted a{
+		color: #cecece;
+	}

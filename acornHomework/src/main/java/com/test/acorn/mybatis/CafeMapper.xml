@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cafe">
+	<insert id="insertForm" parameterType="CafeDto">
+		INSERT INTO cafe
+		(num, writer, title, content, viewCount, regdate)
+		VALUES
+		(cafe_seq.NEXTVAL, #{writer}, #{title},#{content}, #{viewCount}, SYSDATE)
+	</insert>
+	
+	<select id="getList" resultType="CafeDto" parameterType="CafeDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT num,writer,title,content,viewCount,regdate
+				FROM cafe
+				<choose>
+					<when test="title != null and content != null">
+						WHERE title LIKE '%'||#{title}||'%' 
+						OR content LIKE '%'||#{content}||'%'
+					</when>
+					<when test="title != null">
+						WHERE title LIKE '%'||#{title}||'%'
+					</when>
+					<when test="writer != null">
+						WHERE writer LIKE '%'||#{writer}||'%'
+					</when>
+				</choose>
+				ORDER BY num DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	
+	<select id="getCount" parameterType="CafeDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM cafe
+		<choose>
+			<when test="title != null and content != null">
+				WHERE title LIKE '%'||#{title}||'%' 
+				OR content LIKE '%'||#{content}||'%'
+			</when>
+			<when test="title != null">
+				WHERE title LIKE '%'||#{title}||'%'
+			</when>
+			<when test="writer != null">
+				WHERE writer LIKE '%'||#{writer}||'%'
+			</when>
+		</choose>	
+	</select>
+	
+	<select id="getData" parameterType="int" resultType="cafeDto">
+		SELECT result1.*
+		FROM
+			(SELECT num,writer,title,content,viewCount,
+				TO_CHAR(regdate,'YY.MM.DD HH24:MI') AS regdate,
+				LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,
+				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum
+			FROM cafe) result1
+		WHERE num=#{num}
+	</select>
+	
+	<update id="addViewCount" parameterType="int">
+		UPDATE cafe
+		SET viewCount = viewCount + 1
+		WHERE num = #{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM cafe
+		WHERE num = #{num}
+	</delete>
+	
+	
+	<update id="updateForm" parameterType="CafeDto">
+		UPDATE cafe
+		SET title = #{title}, content = #{content}
+		WHERE num = #{num}
+	</update>
+</mapper>

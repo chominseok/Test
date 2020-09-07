@@ -1,0 +1,95 @@
+@charset "UTF-8";
+.bd-placeholder-img {
+     font-size: 1.125rem;
+     text-anchor: middle;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+   }
+
+   @media (min-width: 768px) {
+     .bd-placeholder-img-lg {
+       font-size: 3.5rem;
+     } 
+   }
+   
+   .jumbotron {
+	 	  background-image : url("../images/index_mainC.jpg");
+		  background-size : cover; 
+		  background-repeat : no-repeat;
+ 		  background-position : center center; 
+ 		  height : 450px;
+	}
+   
+   ul{
+		padding-left : 0px;
+		margin-bottom : 0px;
+		float : right;
+	}
+	
+/* 	li{ */
+/* 		float : left; */
+/* 		list-style : none; */
+/* 		color : white; */
+/*  		padding-left : 15px;  */
+/* 	} */
+    
+    .navbar-brand{
+		font-size : 1rem;
+	}
+	
+	.mainSearch{
+		color : white;	
+	}
+	
+	.searchBar{
+		width : 60%;
+		height : 50px;
+		background-color : white;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.foodMenu{
+/* 		opacity : 0.3 */
+	}
+	
+	.info{
+		position : absolute;
+		top : 95px;
+		left : 0px;
+		width : 100%;
+  		display : none;  
+	    color : white;
+	    text-align : center;
+	}
+	
+	.info a{
+		text-decoration: none;
+		color : white;
+	}
+	
+	.bgBlack{
+		background-color : black;
+	}
+	
+	.Head{
+		text-align : center;
+		color : red;
+		background-color : #f8f9fa;
+		margin-bottom : 0;
+	}
+	
+	.card-img{
+		height : 225px;
+	}
+	
+	.space{
+		margin-right : 15px;
+	}
+	
+	ul li a{
+		color : white;
+		text-decoration : none;
+	}

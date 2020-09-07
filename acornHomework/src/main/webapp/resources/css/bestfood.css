@@ -1,0 +1,29 @@
+.slide-size{
+	width:100%;
+	height:400px;
+}
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+.contents-list{
+	background-color: yellow;
+}
+.login_info > li{
+	float:left;
+	list-style:none;
+}
+#img{
+	max-width:300px;
+	overflow:auto
+}
+.img-size{
+	margin: 0;
+	width:50%;
+	height:200px;
+}
+.detail{
+	float:right;
+}

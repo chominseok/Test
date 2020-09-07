@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+	<select id="checkId" parameterType="string" resultType="string">
+		SELECT id
+		FROM testusers
+		WHERE id = #{id}
+	</select>
+	
+	<insert id="signup" parameterType="com.test.acorn.dto.UsersDto">
+		INSERT INTO testusers
+		(id, pwd, email,regdate)
+		VALUES
+		(#{id},#{pwd},#{email},SYSDATE)
+	</insert>
+	
+	<select id="loginId" parameterType="UsersDto" resultType="string">
+		SELECT id
+		FROM testusers
+		WHERE id = #{id}
+	</select>	
+	
+	<select id="getData" parameterType="string" resultType="UsersDto">
+		SELECT id, pwd, email,regdate, profile
+		FROM testusers
+		WHERE id = #{id}
+	</select>
+	
+	<update id="updatePwd" parameterType="UsersDto">
+		UPDATE testusers
+		SET pwd = #{pwd}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteId" parameterType="string">
+		DELETE FROM testusers
+		WHERE id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="UsersDto">
+		UPDATE testusers
+		SET email = #{email}, profile = #{profile}
+		WHERE id = #{id}
+	</update>
+</mapper>
